@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Test {% endblock %}
+
+{% block content %}
+    <div class="data">
+        <h1> Взгляните на список наших товаров</h1>
+        {% if data %}
+            <p>{{ data }}</p>
+        {% else %}
+            <h2>No data</h2>
+        {% endif %}
+    </div>
+{% endblock %}

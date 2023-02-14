@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Домашняя страница {% endblock %}
+
+{% block content %}
+    <div class="main_home">
+        <h1> Взгляните на список наших товаров</h1>
+        <h2>Сегодня действует скидка на разовую покупку духов "Порш"!!!</h2>
+        {% if items %}
+            {% for item in items %}
+                <div class="item">
+                    <h3><a href="{% url 'item_details' item.id %}"> {{ item.name }} </a></h3>
+                    <p>{{ item.description }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>Товаров пока нет :(</h2>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+{% load cart_tag %}
+
+{% block title %} Корзина {% endblock %}
+
+{% block content %}
+    <h2>Всего товаров: {{request.session.cart|length}}</h2> <br>
+    <h3>Список товаров:</h3>
+    {% for key,value in request.session.cart.items %}
+        <h4>Название товара: {{value.name}}</h4>
+        <h4>Цена: {{value.price}} </h4>
+        <h4> Количество: {{value.quantity}} </h4>
+        <h4> Общая стоимость:  {{ value.price|multiply:value.quantity }}</h4>
+        <a href="{% url 'item_increment' value.product_id %}"> Увеличить количество</a>
+        <a href="{% url 'item_decrement' value.product_id %}"> Уменьшить количество</a>
+    {% endfor %}
+    <a href="{% url 'clear_cart' %}"><h5>Очистить корзину</h5></a>
+    <a href="{% url 'home' %}"><h5>Назад</h5></a>
+    <a href="{% url 'create_order' %}"><h5>Создать и оплатить заказ</h5></a>
+{% endblock %}
